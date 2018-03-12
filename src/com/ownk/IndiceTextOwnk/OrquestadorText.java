@@ -40,9 +40,9 @@ public class OrquestadorText {
 					contenidoArchivos = contenidoArchivos + metodos.leerArchivo(seleccionTexto);
 					
 			}	  
-				File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser+".txt"); 
+				File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser); 
 				directorio.mkdir(); 
-				String nombreFinal= "Indice_"+nombreUser;	
+				String nombreFinal= "Indice_"+nombreUser+".txt";	
 				metodos.crearArchivo(contenidoArchivos, nombreFinal,rutaBiblioteca+"/Libros__"+nombreUser);
 				System.out.println("Se creo su archivo en la carpeta destino");
 		}
