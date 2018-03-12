@@ -1,5 +1,5 @@
 package com.ownk.IndiceTextOwnk;
-
+import java.io.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +30,23 @@ public class OrquestadorText {
 		listadoDeArchivos= metodos.listaArchivos(rutaBiblioteca);
 		for (String carpetas : listadoDeArchivos) {
 			System.out.println(carpetas);
-			String listarContenido = rutaBiblioteca+"/"+carpetas;
+			String listarContenido = rutaBiblioteca+"\\"+carpetas;
 			List<String> listadoDeArchivosEnCarpeta= new ArrayList<String>();
 			listadoDeArchivosEnCarpeta = metodos.listaArchivosEnCarpeta(listarContenido);
-				for (int i = 0; i < listadoDeArchivosEnCarpeta.size(); i++) {
-					String libros = listadoDeArchivosEnCarpeta.get(i);
+				for (String libros : listadoDeArchivosEnCarpeta) {
 					System.out.println(libros);
-					File seleccionTexto=metodos.obtenerArchivo(libros);
+					File seleccionTexto=metodos.obtenerArchivo(listarContenido+"/"+libros);
 					contenidoArchivos = contenidoArchivos + metodos.leerArchivo(seleccionTexto);
+					System.out.println(contenidoArchivos);
 					
 			}	  
-				File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser); 
-				directorio.mkdir(); 
-				String nombreFinal= "Indice_"+nombreUser+".txt";	
-				metodos.crearArchivo(contenidoArchivos, nombreFinal,rutaBiblioteca+"/Libros__"+nombreUser);
-				System.out.println("Se creo su archivo en la carpeta destino");
+				
 		}
+		File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser); 
+		directorio.mkdir(); 
+		String nombreFinal= "Indice_"+nombreUser+".txt";	
+		metodos.crearArchivo(contenidoArchivos, nombreFinal,rutaBiblioteca+"/Libros__"+nombreUser);
+		System.out.println("Se creo su archivo en la carpeta destino");
 		
 		}
 	}

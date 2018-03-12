@@ -1,15 +1,17 @@
 package com.ownk.IndiceTextOwnk;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 public class TextUtil {
 	
-	private BufferedReader textoInterior;
+	
 
 	public List<String> listaArchivos(String rutaArchivos){
 		List<String> listaArchivos = new ArrayList<String>();
@@ -73,11 +75,12 @@ public class TextUtil {
 			String texto="";
 			String textoSiguiente="";
 		try {
-			FileReader abrirRuta = new FileReader (archivo);
-			textoInterior = new BufferedReader(abrirRuta);
-			while((texto=textoInterior.readLine())!=null)
+			FileReader lector=new FileReader(archivo);
+			BufferedReader contenido=new BufferedReader(lector);
+			while((texto=contenido.readLine())!=null)
 			{
-				textoSiguiente=textoSiguiente+texto;
+		
+			textoSiguiente=textoSiguiente+texto;
 			}
 			
 		} catch (Exception e) {
