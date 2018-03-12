@@ -35,6 +35,9 @@ public class TextUtil {
 			}
 			return listaArchivos;
 		}
+	
+	/********Lista Adicional *******/	
+	
 	public List<String> listaArchivosEnCarpeta(String rutaCarpeta){
 		List<String> listaArchivosEnCarpeta = new ArrayList<String>();
 		
@@ -57,7 +60,9 @@ public class TextUtil {
 			}
 			return listaArchivosEnCarpeta;
 		}
-		
+
+  /********Ubicar archivo o carpeta individualmente*******/	
+
 	public File obtenerArchivo(String nombre) {
 		File txt = null;
 		 try {
@@ -70,6 +75,7 @@ public class TextUtil {
 		}
 		return txt;
 	}
+		/****Metodo para leer y obtener contenido de un archivo*****/
 	
 	public String leerArchivo(File archivo) {
 			String texto="";
@@ -78,9 +84,20 @@ public class TextUtil {
 			FileReader lector=new FileReader(archivo);
 			BufferedReader contenido=new BufferedReader(lector);
 			while((texto=contenido.readLine())!=null)
-			{
-		
-			textoSiguiente=textoSiguiente+texto;
+			{		
+								
+					textoSiguiente=textoSiguiente+"\r\n"+texto;
+					
+		/******* Unsolved BUG ***********/
+					
+					/*String[] Lineas=texto.split(":");
+					for (String lineasIndependientes : Lineas) {
+						System.out.println(lineasIndependientes);
+						String[] campo=lineasIndependientes[0];
+						String[] contenidoCampo=lineasIndependientes[1];
+						
+					}*/
+					
 			}
 			
 		} catch (Exception e) {
@@ -100,14 +117,11 @@ public class TextUtil {
 			escribir.close(); 
 		} 
 		
-		catch (Exception e) {
+		catch (Exception e) 
 			{
 				System.out.println("Error al escribir : " + e);
-			}
 		}
 		
 		return exito;
 	}
-
-
 }

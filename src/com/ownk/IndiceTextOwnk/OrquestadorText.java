@@ -26,10 +26,15 @@ public class OrquestadorText {
 		ruta = new Scanner(System.in);
 		rutaBiblioteca= ruta.nextLine();
 		
+	/***************Listar Carpetas***********/				
+
 		List<String> listadoDeArchivos= new ArrayList<String>();
 		listadoDeArchivos= metodos.listaArchivos(rutaBiblioteca);
 		for (String carpetas : listadoDeArchivos) {
 			System.out.println(carpetas);
+			
+	/***************Listar Archivos en carpetas ***********/				
+
 			String listarContenido = rutaBiblioteca+"\\"+carpetas;
 			List<String> listadoDeArchivosEnCarpeta= new ArrayList<String>();
 			listadoDeArchivosEnCarpeta = metodos.listaArchivosEnCarpeta(listarContenido);
@@ -39,17 +44,18 @@ public class OrquestadorText {
 					contenidoArchivos = contenidoArchivos + metodos.leerArchivo(seleccionTexto);
 					System.out.println(contenidoArchivos);
 					
+	/***************Crear archivos indice_nombreLibro y carpeta libro_nombreUser ***********/		
+					
+					File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser); 
+					directorio.mkdir(); 
+					String nombreFinal= "Indice_"+libros+".txt";	
+					metodos.crearArchivo(contenidoArchivos, nombreFinal,rutaBiblioteca+"/Libros__"+nombreUser);
+					System.out.println("Se creo su archivo en la carpeta destino");					
 			}	  
 				
-		}
-		File directorio=new File(rutaBiblioteca+"/Libros__"+nombreUser); 
-		directorio.mkdir(); 
-		String nombreFinal= "Indice_"+nombreUser+".txt";	
-		metodos.crearArchivo(contenidoArchivos, nombreFinal,rutaBiblioteca+"/Libros__"+nombreUser);
-		System.out.println("Se creo su archivo en la carpeta destino");
-		
-		}
+		}		
 	}
+}
 
 		
 		
